@@ -1,90 +1,92 @@
 /** @type {HTMLCanvasElement} */
 
-class Component{
-    constructor(x, y, width, height, ctx){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.ctx = ctx;
-        this.image = new Image();
-        this.speedX = 0;
-        this.speedY = 0;
+class Component {
+    constructor(x, y, w, h, color, ctx) {
+      this.x = x;
+      this.y = y;
+      this.w = w;
+      this.h = h;
+      this.color = color;
+      this.ctx = ctx;
+      this.speedX = 0;
+      this.speedY = 0;
+  
+      this.img = new Image();
+      this.img.src = "images/temporary.jpg";
     }
-    draw(){
-        this.image.src="docs/assets/images/street.png"
-        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  
+    draw() {
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+    }
+  
+    newPosition() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+    }
+  
+    top() {
+      return this.y;
+    }
+  
+    bottom() {
+      return this.y + this.h;
+    }
+  
+    left() {
+      return this.x;
+    }
+  
+    right() {
+      return this.x + this.w;
+    }
+  
+    crashWith(enemy) {
+      return !(
+        this.bottom() < enemy.top() ||
+        this.top() > enemy.bottom() ||
+        this.right() < enemy.left() ||
+        this.left() > enemy.right()
+      );
+    }
+  }
+  
+  class Enemy {
+    constructor(x, y, w, h, color, ctx) {
+      this.x = x;
+      this.y = y;
+      this.w = 75;
+      this.h = 100;
+      this.color = color;
+      this.ctx = ctx;
+      this.speedX = 0;
+      this.speedY = 0;
 
+      this.img = new Image();
+      this.img.src = "images/car.png";
     }
-    newPos(){
-        this.x += this.speedX;
-        this.y += this.speedY;
+  
+    draw() {
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
-
-    top(){
-        return this.y;
+  
+    newPosition() {
+      this.x += this.speedX;
+      this.y += this.speedY;
     }
-    
-    bottom(){
-        return this.y + this.height;
-    }
-
-    left(){
-        return this.x;
-    }
-
-    right(){
-        return this.width + this.x;
-    }
-
-    crashWith(obstacle){
-        return !(
-            this.bottom() < obstacle.top() ||
-            this.top() > obstacle.bottom() ||
-            this.right() < obstacle.left() ||
-            this.left() > obstacle.right()
-            );
-    }
-}
-
-class Obstacle{
-    constructor(x, y, width, height, ctx){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.ctx = ctx;
-        this.image = new Image();
-        this.speedX = 0;
-        this.speedY = 0;
-
-        this.img.src = '';
-    }
-
-    draw(){
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillRect(this.x, this.y, this.width, this.height);
-
-    }
-    newPos(){
-        this.x += this.speedX;
-        this.y += this.speedY;
-    }
-
-    top(){
-        return this.y;
-    }
-
-    bottom(){
-        return this.y + this.height;
-    }
-
-    left(){
-        return this.x;
-    }
-    
-    right(){
-        return this.width + this.x;
+  
+    top() {
+      return this.y;
     }
 
-}
+    bottom() {
+      return this.y + this.h;
+    }
+
+    left() {
+      return this.x;
+    }
+
+    right() {
+      return this.x + this.w;
+    }
+  }
