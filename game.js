@@ -30,7 +30,7 @@ class Game{
   
   clear(){
       const background = new Image();
-      background.src = "/images/";
+      background.src = "/docs/assets/images/street.png";
       ctx.drawImage(background, 0, 0, 500, 700); 
   }
 

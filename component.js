@@ -12,7 +12,7 @@ class Component{
         this.speedY = 0;
     }
     draw(){
-        this.image.src=""
+        this.image.src="docs/assets/images/street.png"
         this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 
     }
