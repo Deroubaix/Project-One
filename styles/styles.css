@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+ #start-button {
+
+    font-size: 30px;
+    background-color: #870007;
+    color: #fff;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    
+  }
+
+  .game-intro {
+    float: left;
+    padding: 0% 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .arrows-img {
+    width: 200px;
+  }
+
+  h1 {
+    font-size: 5rem;
+  }

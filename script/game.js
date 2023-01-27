@@ -34,7 +34,7 @@ class Game {
   
     clear() {
       //Instead of clearing the canvas we can draw the bg on top
-      this.backgroundImage.src = "images/street.png";
+      this.backgroundImage.src = "/docs/assets/images/street.png";
       this.ctx.drawImage(this.backgroundImage, 0, 0, this.width, this.height);
     }
   
@@ -56,7 +56,7 @@ class Game {
         this.enemies[i].draw();
       }
   
-      if (this.frames % 200 === 0) {
+      if (this.frames % 300 === 0) {
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
         let randomX = Math.floor(Math.random() * (200 - 100) + 100);

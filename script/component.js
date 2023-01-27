@@ -12,7 +12,7 @@ class Component {
       this.speedY = 0;
   
       this.img = new Image();
-      this.img.src = "images/temporary.jpg";
+      this.img.src = "/docs/assets/images/temporary.jpg";
     }
   
     draw() {
@@ -62,7 +62,7 @@ class Component {
       this.speedY = 0;
 
       this.img = new Image();
-      this.img.src = "images/car.png";
+      this.img.src = "/docs/assets/images/weed.png";
     }
   
     draw() {
