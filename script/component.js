@@ -22,6 +22,18 @@ class Component {
     newPosition() {
       this.x += this.speedX;
       this.y += this.speedY;
+      
+      if (this.x < 0) {
+        this.x = 0;
+      } else if (this.x + this.w > 500) {
+        this.x = 500 - this.w;
+      }
+
+      if (this.y < 0) {
+        this.y = 0;
+      } else if (this.y + this.h > 670) {
+        this.y = 670 - this.h;
+      }
     }
   
     top() {
