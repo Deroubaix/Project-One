@@ -54,7 +54,7 @@ class Component {
     constructor(x, y, w, h, color, ctx) {
       this.x = x;
       this.y = y;
-      this.w = 75;
+      this.w = 100;
       this.h = 100;
       this.color = color;
       this.ctx = ctx;

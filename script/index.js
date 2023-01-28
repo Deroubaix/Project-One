@@ -6,7 +6,6 @@ const ctx = canvas.getContext("2d");
 
 const startButton = document.getElementById("start-button");
 
-//Creating the player
 const player = new Component(220, 550, 75, 75, "Image", ctx);
 
 startButton.onclick = function () {

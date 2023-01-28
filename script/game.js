@@ -33,7 +33,6 @@ class Game {
     }
   
     clear() {
-      //Instead of clearing the canvas we can draw the bg on top
       this.backgroundImage.src = "/docs/assets/images/street.png";
       this.ctx.drawImage(this.backgroundImage, 0, 0, this.width, this.height);
     }
