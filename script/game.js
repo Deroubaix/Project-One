@@ -51,14 +51,14 @@ class Game {
   
     updateEnemies() {
       for (let i = 0; i < this.enemies.length; i++) {
-        this.enemies[i].y += 1;
+        this.enemies[i].y += 2;
         this.enemies[i].draw();
       }
   
-      if (this.frames % 300 === 0) {
+      if (this.frames % 100 === 0) {
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
-        let randomX = Math.floor(Math.random() * (200 - 100) + 100);
+        let randomX = Math.floor(Math.random() * (500 - 100) + 100);
   
         this.enemies.push(new Enemy(randomX, 0, randomSize, 30, "red", this.ctx));
       }
