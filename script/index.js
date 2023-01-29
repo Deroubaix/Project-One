@@ -28,6 +28,8 @@ document.addEventListener("keydown", (e) => {
     case "ArrowRight":
       player.speedX += 2
       break;
+
+     
   }
 });
 
