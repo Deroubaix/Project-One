@@ -1,19 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-image: url(../docs/assets/images/lisbon.webp);
-    background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url(../docs/assets/images/street3.png);
+  background-size: cover;
+  
+  
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
-  text-align: center;
+  text-align: end;
 }
 
  #start-button {
@@ -28,14 +31,12 @@ body {
   }
 
   #game-intro {
-    /* float: left; 
-    padding: 0% 5%;  */
-
     display: flex; 
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
+  
   }
 
   .hide {
@@ -52,6 +53,10 @@ body {
 
   #game-board {
     display: none;
+    justify-items: end;
+    justify-content: end;
+ 
+    padding-top: 100px;
   }
 
   #restart {

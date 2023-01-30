@@ -34,8 +34,8 @@ class Game {
     }
   
     clear() {
-      this.backgroundImage.src = "docs/assets/images/street3.png";
-      this.ctx.drawImage(this.backgroundImage, 0, 0, 700, 700);
+      this.backgroundImage.src = "docs/assets/images/portu.png";
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 600);
     }
   
     drawScore() {
