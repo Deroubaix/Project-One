@@ -25,14 +25,14 @@ class Component {
       
       if (this.x < 0) {
         this.x = 0;
-      } else if (this.x + this.w > 700) {
-        this.x = 700 - this.w;
+      } else if (this.x + this.w > 1200) {
+        this.x = 1200 - this.w;
       }
 
       if (this.y < 0) {
         this.y = 0;
-      } else if (this.y + this.h > 700) {
-        this.y = 700 - this.h;
+      } else if (this.y + this.h > 350) {
+        this.y = 350 - this.h;
       }
     }
   

@@ -15,8 +15,10 @@ const player = new Component(220, 550, 75, 75, "Image", ctx);
 
 targetRestart.classList.add("hidden")
 
+const game = new Game(ctx, 1200, 350, player);
+
 startButton.onclick = function () {
-  const game = new Game(ctx, 500, 700, player);
+  
   game.start(); 
   if (targetDiv.style.display !== "none") {
   if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
@@ -29,6 +31,10 @@ startButton.onclick = function () {
   }
  };
 };
+
+restartButton.onclick = function() {
+  game.start()
+}
 
 
 document.addEventListener("keydown", (e) => {

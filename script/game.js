@@ -35,12 +35,12 @@ class Game {
   
     clear() {
       this.backgroundImage.src = "docs/assets/images/lisboa.jpg";
-      this.ctx.drawImage(this.backgroundImage, 0, 0, 700, 700);
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 350);
     }
   
     drawScore() {
       ctx.font = "20px Helvetica";
-      ctx.fillStyle = "white";
+      ctx.fillStyle = "black";
       ctx.fillText(`Score: ${this.score}`, 80, 30);
     }
   

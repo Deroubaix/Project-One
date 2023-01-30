@@ -7,8 +7,6 @@ body {
   text-align: center;
   background-image: url(../docs/assets/images/street3.png);
   background-size: cover;
-  
-  
 }
 
 .main {
@@ -16,7 +14,6 @@ body {
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  text-align: end;
 }
 
  #start-button {
@@ -29,6 +26,7 @@ body {
     border-radius: 5px;
     margin-bottom: 20px;
   }
+  
 
   #game-intro {
     display: flex; 
@@ -36,7 +34,6 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
-  
   }
 
   .hide {
@@ -50,13 +47,13 @@ body {
   h1 {
     font-size: 5rem;
   }
+  
+  .main #game-board {
+    margin-top: 25%;
+ }
 
   #game-board {
     display: none;
-    justify-items: end;
-    justify-content: end;
- 
-    padding-top: 100px;
   }
 
   #restart {
