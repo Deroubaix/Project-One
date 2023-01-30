@@ -14,8 +14,6 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
- 
-
 }
 
  #start-button {
@@ -61,18 +59,17 @@ body {
     height: 200px;
     width: 400px;
     position: absolute;
-    left:  30%;
+    left: 30%;
     right: 30%;
-    bottom:30%;
+    bottom: 30%;
     top: 30%;
-    margin:10px;
+    margin:50px;
     padding:10px;
   }
 
   #restart h2 {
     color: #870007;
     font-family: "Press Start 2P";
-
   }
 
   #restart-button {
