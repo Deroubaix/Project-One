@@ -74,7 +74,7 @@ class Game {
         ctx.fillRect(50, 200, 400, 250);
         ctx.font = "32px Helvetica";
         ctx.fillStyle = "red";
-        ctx.fillText(`YOU GOT SCAMMED`, 150, 300);
+        ctx.fillText(`GAME OVER`, 150, 300);
         ctx.fillStyle = "white";
         ctx.fillText(`Your final score`, 135, 350);
         ctx.fillText(`${this.score}`, 230, 400);

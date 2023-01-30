@@ -17,7 +17,7 @@ body {
     
   }
 
-  .game-intro {
+  #game-intro {
     float: left;
     padding: 0% 5%;
     display: flex;
@@ -27,6 +27,10 @@ body {
     text-align: center;
   }
 
+  .hide {
+    display: none;
+  } 
+ 
   .arrows-img {
     width: 200px;
   }
