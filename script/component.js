@@ -31,8 +31,8 @@ class Component {
 
       if (this.y < 0) {
         this.y = 0;
-      } else if (this.y + this.h > 670) {
-        this.y = 670 - this.h;
+      } else if (this.y + this.h > 700) {
+        this.y = 700 - this.h;
       }
     }
   
