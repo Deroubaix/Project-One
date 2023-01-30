@@ -5,13 +5,21 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const startButton = document.getElementById("start-button");
+const targetDiv = document.getElementById("game-intro")
 
 const player = new Component(220, 550, 75, 75, "Image", ctx);
 
+
 startButton.onclick = function () {
   const game = new Game(ctx, 500, 700, player);
-  game.start();
+  game.start(); 
+  if (targetDiv.style.display !== "none") {
+    targetDiv.style.display = "none"
+  } else {
+    targetDiv.style.display = "block"
+  }
 };
+
 
 document.addEventListener("keydown", (e) => {
   switch (e.code) {

@@ -66,8 +66,8 @@ class Component {
     constructor(x, y, w, h, color, ctx) {
       this.x = x;
       this.y = y;
-      this.w = 100;
-      this.h = 100;
+      this.w = 50;
+      this.h = 50;
       this.color = color;
       this.ctx = ctx;
       this.speedX = 0;
