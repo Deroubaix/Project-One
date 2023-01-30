@@ -30,6 +30,7 @@ class Game {
   
     stop() {
       clearInterval(this.intervalId);
+      targetRestart.classList.remove("hidden")
     }
   
     clear() {

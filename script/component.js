@@ -25,8 +25,8 @@ class Component {
       
       if (this.x < 0) {
         this.x = 0;
-      } else if (this.x + this.w > 500) {
-        this.x = 500 - this.w;
+      } else if (this.x + this.w > 700) {
+        this.x = 700 - this.w;
       }
 
       if (this.y < 0) {
