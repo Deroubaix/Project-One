@@ -33,7 +33,11 @@ class Game {
     }
   
     clear() {
+<<<<<<< HEAD
       this.backgroundImage.src = "docs/assets/images/baixa2.jpg";
+=======
+      this.backgroundImage.src = "docs/assets/images/street3.png";
+>>>>>>> f5ef6204cc57393576d2bd6449d9de100dee78a0
       this.ctx.drawImage(this.backgroundImage, 0, 0, 700, 700);
     }
   

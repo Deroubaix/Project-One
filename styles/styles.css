@@ -1,11 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     text-align: center;
+    background-image: url(../docs/assets/images/lisbon.webp);
+    background-size: cover;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+
 }
 
  #start-button {
-
     font-size: 30px;
     background-color: #870007;
     color: #fff;
@@ -14,7 +27,6 @@ body {
     box-shadow: 0;
     border-radius: 5px;
     margin-bottom: 20px;
-    
   }
 
   #game-intro {
@@ -42,4 +54,28 @@ body {
 
   #game-board {
     display: none;
+  }
+
+  #restart {
+    background-color: black;
+   /*  display: none; */
+    height: 200px;
+    width: 400px;
+   
+  }
+
+  #restart h2 {
+    color: #870007;
+    font-family: "Press Start 2P";
+  }
+
+  #restart-button {
+    font-size: 25px;
+    background-color: #870007;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
   }
