@@ -33,8 +33,8 @@ class Game {
     }
   
     clear() {
-      this.backgroundImage.src = "docs/assets/images/augustaPixelated1.jpeg";
-      this.ctx.drawImage(this.backgroundImage, 0, 0, this.width, this.height);
+      this.backgroundImage.src = "docs/assets/images/street3.png";
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 700, 700);
     }
   
     drawScore() {
