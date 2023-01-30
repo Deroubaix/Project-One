@@ -71,7 +71,7 @@ class Game {
       });
   
       if (crashed) {
-        this.stop()
+        this.stop();
       }
     }
   }
