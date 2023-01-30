@@ -6,6 +6,7 @@ const ctx = canvas.getContext("2d");
 
 const startButton = document.getElementById("start-button");
 const targetDiv = document.getElementById("game-intro")
+const targetCanvas = document.getElementById("game-board")
 
 const player = new Component(220, 550, 75, 75, "Image", ctx);
 
@@ -13,10 +14,12 @@ const player = new Component(220, 550, 75, 75, "Image", ctx);
 startButton.onclick = function () {
   const game = new Game(ctx, 500, 700, player);
   game.start(); 
-  if (targetDiv.style.display !== "none") {
+  if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
     targetDiv.style.display = "none"
+    targetCanvas.style.display = "block"
   } else {
-    targetDiv.style.display = "block"
+    targetDiv.style.display = "block" 
+    targetCanvas.style.display = "none"
   }
 };
 
