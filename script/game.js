@@ -30,6 +30,7 @@ class Game {
   
     stop() {
       clearInterval(this.intervalId);
+      targetRestart.classList.remove("hidden")
     }
   
     clear() {
@@ -70,15 +71,7 @@ class Game {
       });
   
       if (crashed) {
-        ctx.fillStyle = "black";
-        ctx.fillRect(50, 200, 400, 250);
-        ctx.font = "32px Helvetica";
-        ctx.fillStyle = "red";
-        ctx.fillText(`YOU GOT SCAMMED`, 90, 300);
-        ctx.fillStyle = "white";
-        ctx.fillText(`Your final score`, 135, 350);
-        ctx.fillText(`${this.score}`, 230, 400);
-        this.stop();
+        this.stop()
       }
     }
   }
