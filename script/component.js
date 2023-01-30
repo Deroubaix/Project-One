@@ -73,19 +73,23 @@ class Component {
       this.speedX = 0;
       this.speedY = 0;
 
-      this.imgType = Math.floor(Math.random() * 2) + 1;
+      this.imgType = Math.floor(Math.random() * 3) + 1;
 
       this.img = new Image();
       this.img.src = "/docs/assets/images/weed.png";
       this.img2 = new Image();
       this.img2.src = "docs/assets/images/coke.png";
+      this.img3 = new Image();
+      this.img3.src = "docs/assets/images/mushroom.png";
     }
   
     draw() {
       if (this.imgType === 1) {
         this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-      } else {
+      } else if (this.imgType === 2){
         this.ctx.drawImage(this.img2, this.x, this.y, this.w, this.h);
+      } else {
+        this.ctx.drawImage(this.img3, this.x, this.y, this.w, this.h);
       }
     }
   
