@@ -18,14 +18,18 @@ targetRestart.classList.add("hidden")
 startButton.onclick = function () {
   const game = new Game(ctx, 500, 700, player);
   game.start(); 
+  if (targetDiv.style.display !== "none") {
   if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
     targetDiv.style.display = "none"
     targetCanvas.style.display = "block"
   } else {
+    targetDiv.style.display = "block"
     targetDiv.style.display = "block" 
     targetCanvas.style.display = "none"
   }
+ };
 };
+
 
 document.addEventListener("keydown", (e) => {
   switch (e.code) {
