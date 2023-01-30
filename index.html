@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <title>Race Car</title>
+    <title>Escape Baixa</title>
   </head>
   <body>
     <div class="game-intro">
@@ -14,6 +14,13 @@
       <p>Use the left, right, up and down arrow to resist the urge <br> of feeding your addiction and being scammed!</p>
       <img src="docs/assets/images/keyboard.png" alt="" class="arrows-img" />
     </div>
+
+    <script>
+      $("#start-button").click(function () {
+          $("#game-intro").hide();
+          $("#game-board").show();
+      });
+  </script>
 
     <div id="game-board">
       <canvas id="canvas" width="500" height="700" style="border: 10px solid black"></canvas>
@@ -24,3 +31,5 @@
     <script type="text/javascript" src="./script/index.js"></script>
   </body>
 </html>
+
+  
