@@ -33,11 +33,7 @@ class Game {
     }
   
     clear() {
-<<<<<<< HEAD
-      this.backgroundImage.src = "docs/assets/images/baixa2.jpg";
-=======
       this.backgroundImage.src = "docs/assets/images/street3.png";
->>>>>>> f5ef6204cc57393576d2bd6449d9de100dee78a0
       this.ctx.drawImage(this.backgroundImage, 0, 0, 700, 700);
     }
   
@@ -74,14 +70,6 @@ class Game {
       });
   
       if (crashed) {
-        ctx.fillStyle = "black";
-        ctx.fillRect(50, 200, 400, 250);
-        ctx.font = "32px Helvetica";
-        ctx.fillStyle = "red";
-        ctx.fillText(`YOU GOT SCAMMED`, 90, 300);
-        ctx.fillStyle = "white";
-        ctx.fillText(`Your final score`, 135, 350);
-        ctx.fillText(`${this.score}`, 230, 400);
         this.stop();
       }
     }
