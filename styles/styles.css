@@ -51,8 +51,12 @@ body {
   }
 
   #game-board {
-    display: none;
-  }
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      align-content: flex-end;
+    }
 
   #restart {
     background-color: black;
