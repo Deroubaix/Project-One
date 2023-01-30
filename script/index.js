@@ -20,7 +20,6 @@ startButton.onclick = function () {
   }
 };
 
-
 document.addEventListener("keydown", (e) => {
   switch (e.code) {
     case "ArrowUp":
