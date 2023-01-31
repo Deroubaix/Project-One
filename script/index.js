@@ -10,15 +10,15 @@ const targetCanvas = document.getElementById("game-board")
 
 const targetRestart = document.getElementById("restart")
 const restartButton = document.getElementById("restart-button")
-
 const player = new Component(220, 550, 75, 75, "Image", ctx);
 
 targetRestart.classList.add("hidden")
 
 const game = new Game(ctx, 1200, 350, player);
+
 startButton.onclick = function () {
-  
   game.start(); 
+
   if (targetDiv.style.display !== "none") {
   if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
     targetDiv.style.display = "none"

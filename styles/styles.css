@@ -42,10 +42,6 @@ body, html {
     text-align: center;
   }
 
-  .hide {
-    display: none;
-  } 
- 
   .arrows-img {
     width: 200px;
   }
@@ -57,10 +53,6 @@ body, html {
   .main #game-board {
     margin-top: 25%;
  }
-
-/*  #canvas {
-  margin-bottom: 0%;
- } */
 
   #game-board {
     display: none;

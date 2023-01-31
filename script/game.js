@@ -10,6 +10,9 @@ class Game {
       this.frames = 0;
       this.enemies = [];
       this.score = 0;
+      this.lives = 5;
+      this.livesImg = new Image();
+      this.livesImg.src = "/docs/assets/images/live.png";
       this.backgroundImage = new Image();
     }
   
@@ -27,6 +30,7 @@ class Game {
       this.checkGameOver();
       this.drawScore();
       this.updateScore();
+      this.drawLives()
     };
   
     stop() {
@@ -39,6 +43,30 @@ class Game {
       this.ctx.clearRect(0, 0 , 1200, 350);
       this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 350);
     }
+
+    drawLives() {
+ if (this.lives === 5){
+   this.ctx.drawImage(this.livesImg, 45, 45)
+   this.ctx.drawImage(this.livesImg, 80, 45)
+   this.ctx.drawImage(this.livesImg, 115, 45)
+   this.ctx.drawImage(this.livesImg, 150, 45)
+   this.ctx.drawImage(this.livesImg, 185, 45)
+ } else if (this.lives === 4){
+  this.ctx.drawImage(this.livesImg, 45, 45)
+  this.ctx.drawImage(this.livesImg, 80, 45)
+  this.ctx.drawImage(this.livesImg, 115, 45)
+  this.ctx.drawImage(this.livesImg, 150, 45)
+ } else if (this.lives === 3){
+  this.ctx.drawImage(this.livesImg, 45, 45)
+  this.ctx.drawImage(this.livesImg, 80, 45)
+  this.ctx.drawImage(this.livesImg, 115, 45)
+ } else if (this.lives === 2){
+  this.ctx.drawImage(this.livesImg, 45, 45)
+  this.ctx.drawImage(this.livesImg, 80, 45)
+ } else if (this.lives === 1){
+  this.ctx.drawImage(this.livesImg, 45, 45)  
+  }
+}
   
     drawScore() {
       ctx.font = "20px Helvetica";
@@ -74,8 +102,9 @@ class Game {
       });
   
       if (crashed) {
-        this.stop();
-        targetRestart.style.display = "block"
+/*         this.stop();
+        targetRestart.style.display = "block" */
+        this.lives--;
       }
     }
   }
