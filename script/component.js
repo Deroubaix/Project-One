@@ -128,4 +128,4 @@ class Component {
     right() {
       return this.x + this.w;
     }
-  }
+  };
