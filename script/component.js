@@ -9,6 +9,7 @@ class Component {
       this.color = color;
       this.ctx = ctx;
       this.speedX = 0;
+      this.gravity = 0.2;
       this.speedY = 0;
   
       this.img = new Image();
@@ -51,6 +52,20 @@ class Component {
     right() {
       return this.x + this.w;
     }
+
+    jump() {
+      this.speedY -= 8;
+  }
+
+    update() {
+      this.speedY += this.gravity;
+      this.y += this.speedY;
+      if (this.bottom() >= 350) {
+        this.speedY = 0;
+        this.y = 350 - this.h;
+      }
+      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
   
     crashWith(enemy) {
       return !(

@@ -36,11 +36,10 @@ restartButton.onclick = function() {
   game.start()
 }
 
-
 document.addEventListener("keydown", (e) => {
   switch (e.code) {
     case "ArrowUp":
-      player.speedY -= 2
+      player.jump();
       break;
     case "ArrowDown":
       player.speedY += 2

@@ -34,7 +34,7 @@ class Game {
     }
   
     clear() {
-      this.backgroundImage.src = "docs/assets/images/lisboa.jpg";
+      this.backgroundImage.src = "docs/assets/images/lisboa_preview_rev_1.png";
       this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 350);
     }
   
@@ -52,16 +52,16 @@ class Game {
   
     updateEnemies() {
       for (let i = 0; i < this.enemies.length; i++) {
-        this.enemies[i].y += 2;
+        this.enemies[i].x -= 2;
         this.enemies[i].draw();
       }
   
-      if (this.frames % 100 === 0) {
+      if (this.frames % Math.floor(Math.random() * (50 - 10) + 10) === 0) {
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
-        let randomX = Math.floor(Math.random() * (500 - 100) + 100);
+        let randomX = 1200
   
-        this.enemies.push(new Enemy(randomX, 0, randomSize, 30, "red", this.ctx));
+        this.enemies.push(new Enemy(randomX, 300, randomSize, 30, "red", this.ctx));
       }
     }
   
