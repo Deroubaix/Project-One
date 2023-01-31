@@ -15,10 +15,9 @@ const player = new Component(220, 550, 75, 75, "Image", ctx);
 
 targetRestart.classList.add("hidden")
 
-
-
+const game = new Game(ctx, 1200, 350, player);
 startButton.onclick = function () {
-  const game = new Game(ctx, 1200, 350, player);
+  
   game.start(); 
   if (targetDiv.style.display !== "none") {
   if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
@@ -32,24 +31,35 @@ startButton.onclick = function () {
  };
 };
 
-restartButton.onclick = function () {
-  const game = new Game(ctx, 1200, 350, player);
-  if (targetRestart.style.display !== "none") {
-      targetRestart.style.display = "none"
-      game.start()
-    } 
-   };
-
+restartButton.onclick = function() {
+  game.start()
+}
 
 document.addEventListener("keydown", (e) => {
   switch (e.code) {
     case "ArrowUp":
       player.jump();
       break;
+    /* case "ArrowDown":
+      player.speedY += 2
+      break; */
+    case "ArrowLeft":
+      player.speedX -= 2
+      break;
+    case "ArrowRight":
+      player.speedX += 2
+      break;
   }
 });
 
-document.addEventListener("keyup", () => {
+document.addEventListener("keyup", (e) => {
+  switch (e.code) {
+    case "ArrowUp":
+      player.jumpTimer = 0;
+      break;
+    /* case "ArrowDown":
+      player.speedY = 0;
+      break; */
+  }
   player.speedX = 0;
-  player.speedY = 0;
 });

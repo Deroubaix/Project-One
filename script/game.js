@@ -21,6 +21,7 @@ class Game {
       this.frames++;
       this.clear();
       this.player.newPosition();
+      this.player.animateJump();
       this.player.draw();
       this.updateEnemies();
       this.checkGameOver();
@@ -35,7 +36,7 @@ class Game {
   
     clear() {
       this.backgroundImage.src = "docs/assets/images/lisboa_preview_rev_1.png";
-      this.ctx.clearRect(0, 0, 1200, 350)
+      this.ctx.clearRect(0, 0 , 1200, 350);
       this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 350);
     }
   
@@ -57,7 +58,7 @@ class Game {
         this.enemies[i].draw();
       }
   
-      if (this.frames % 200  === 0) {
+      if (this.frames % 240  === 0) {
         console.log("Create enemy")
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
@@ -74,7 +75,6 @@ class Game {
   
       if (crashed) {
         this.stop();
-        targetRestart.style.display = "block"
       }
     }
   }

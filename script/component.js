@@ -9,9 +9,11 @@ class Component {
       this.color = color;
       this.ctx = ctx;
       this.speedX = 0;
-      this.gravity = 0.2;
+      this.gravity = 0.5;
       this.speedY = 0;
-  
+      this.isGrounded = false;
+      this.jumpTimer = 0;
+      this.jumpForce = 10;
       this.img = new Image();
       this.img.src = "/docs/assets/images/temporary.jpg";
     }
@@ -53,17 +55,32 @@ class Component {
       return this.x + this.w;
     }
 
+    animateJump() {
+
+      this.y += this.speedY;
+      if(this.y + this.h < canvas.height) {
+        this.speedY += this.gravity;
+        this.isGrounded = false;
+      } else {
+        this.speedY = 0;
+        this.isGrounded = true;
+        this.y = canvas.height - this.h
+      }
+    }
+
     jump() {
-      this.speedY -= 8;
+      console.log(this.jumpTimer)
+      if(this.isGrounded && this.jumpTimer === 0){
+        this.jumpTimer = 1;
+        this.speedY = -this.jumpForce;
+        console.log(this.jumpTimer)
+      } else if(this.jumpTimer > 0 && this.jumpTimer < 1) {
+        this.jumpTimer++;
+        this.speedY = -this.jumpForce - this.jumpTimer / 50
+      }
   }
 
     update() {
-      this.speedY += this.gravity;
-      this.y += this.speedY;
-      if (this.bottom() >= 350) {
-        this.speedY = 0;
-        this.y = 350 - this.h;
-      }
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
   }
   
@@ -128,4 +145,5 @@ class Component {
     right() {
       return this.x + this.w;
     }
-  };
+  }
+
