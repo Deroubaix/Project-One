@@ -46,15 +46,6 @@ document.addEventListener("keydown", (e) => {
     case "ArrowUp":
       player.jump();
       break;
-     case "ArrowDown":
-      player.speedY += 2
-      break;
-/*     case "ArrowLeft":
-      player.speedX -= 2
-      break;
-    case "ArrowRight":
-      player.speedX += 2
-      break;  */
   }
 });
 
