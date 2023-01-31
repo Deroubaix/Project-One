@@ -72,6 +72,7 @@ class Game {
   
       if (crashed) {
         this.stop();
+        targetRestart.style.display = "block"
       }
     }
   }
