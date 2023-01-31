@@ -32,7 +32,11 @@ startButton.onclick = function () {
 };
 
 restartButton.onclick = function() {
-  game.start()
+  const game = new Game(ctx, 1200, 350, player);
+   if (targetRestart.style.display !== "none") {
+       targetRestart.style.display = "none"
+       game.start()
+     } 
 }
 
 document.addEventListener("keydown", (e) => {
