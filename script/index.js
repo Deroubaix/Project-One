@@ -17,9 +17,12 @@ targetRestart.classList.add("hidden")
 const game = new Game(ctx, 1200, 350, player);
 
 startButton.onclick = function () {
-  game.start(); 
+  
+  document.getElementById("game-intro").classList.add("hidden")
+document.getElementById("canvas").classList.remove("hidden")
 
-  if (targetDiv.style.display !== "none") {
+  game.start(); 
+/*   if (targetDiv.style.display !== "none") {
   if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
     targetDiv.style.display = "none"
     targetCanvas.style.display = "block"
@@ -28,7 +31,7 @@ startButton.onclick = function () {
     targetDiv.style.display = "block" 
     targetCanvas.style.display = "none"
   }
- };
+ }; */
 };
 
 restartButton.onclick = function() {
