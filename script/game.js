@@ -23,6 +23,7 @@ class Game {
       this.player.newPosition();
       this.player.animateJump();
       this.player.draw();
+      
       this.updateEnemies();
       this.checkGameOver();
       this.drawScore();
@@ -37,7 +38,7 @@ class Game {
     clear() {
       this.backgroundImage.src = "docs/assets/images/lisboa_preview_rev_1.png";
       this.ctx.clearRect(0, 0 , 1200, 350);
-      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 350);
+      this.ctx.drawImage(this.backgroundImage, 0, -125, 1200, 475);
     }
   
     drawScore() {
@@ -75,7 +76,6 @@ class Game {
   
       if (crashed) {
         this.stop();
-        targetRestart.style.display = "block"
       }
     }
   }
