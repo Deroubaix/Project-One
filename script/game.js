@@ -8,6 +8,7 @@ class Game {
       this.player = player;
       this.intervalId = null;
       this.frames = 0;
+      this.counter = 0;
       this.enemies = [];
       this.score = 0;
       this.lives = 5;
