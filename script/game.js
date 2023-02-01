@@ -98,17 +98,15 @@ class Game {
     }
   
     checkGameOver() {
-      const crashed = this.enemies.some((enemy) => {
-        if (this.player.crashWith(enemies)) {
-          this.enemies.splice(index, 1);
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (this.player.crashWith(this.enemies[i])) {
+          this.enemies.splice(i, 1);
+          this.lives--;
+          break;
         }
-        return this.player.crashWith(enemy);
-      });
-  
-      if (crashed) {
-/*         this.stop();
-        targetRestart.style.display = "block" */
-        this.player.lives -=1;
+      } 
+      if (this.lives === 0) {
+        this.stop()
+      }
     }
   }
-}
