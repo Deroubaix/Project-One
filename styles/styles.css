@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@-webkit-keyframes animacao2 { from {-webkit-transform: scale(1);} 
+ to {-webkit-transform: scale(1.2);} }
+
+@-moz-keyframes animacao2 { from {-moz-transform: scale(1);} 
+ to {-moz-transform: scale(1.1);} }
+
+@keyframes animacao2 { from {transform: scale(1);} 
+ to {transform: scale(1.1);} }
+
 body, html {
   font-family: "Press Start 2P";
   display: flex;
@@ -9,23 +18,14 @@ body, html {
   background-image: url("../docs/assets/images/sky.png");
   background-size: cover;
   background-attachment: fixed;
-   height: 100vh; 
+  height: 100vh; 
   margin: 0
 }
 
-/* .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  line-height: 1.9;
-  
-} */
-
  #start-button {
     font-size: 30px;
-    background-color: #870007;
-    color: #fff;
+    background-color: black;
+    color: #ffd300;
     padding: 20px 40px;
     border: 0;
     box-shadow: 0;
@@ -33,16 +33,17 @@ body, html {
     margin-bottom: 20px;
     font-family: "Press Start 2P";
   }
-  
 
-/*   #game-intro {
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-  } */
+  #game-intro p {
+    line-height: 1.6rem;
+  }
 
+  #game-intro p span {
+    color: #ffd300;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+  }
 
- 
   .arrows-img {
     width: 200px;
     margin-bottom: 50px;
@@ -51,69 +52,71 @@ body, html {
   h1 {
     font-size: 5rem;
   }
-  
-/*   .main #game-board {
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
- } */
-
-/* canvas {
-  margin-bottom: 0%;
- } */
-
-/*   #game-board {
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
-  } */
-
-/*   .hide {
-    display: none;
-  }  */
 
   #restart {
     background-color: black;
-    height: 200px;
-    width: 400px;
+    height: 300px;
+    width: 550px;
     position: absolute;
-    left: 30%;
-    right: 30%;
     bottom: 30%;
     top: 30%;
-    margin: 50px;
-    padding:10px;
+    padding:40px;
+    border-radius: 40px;
+    
   }
 
-  #restart h2 {
-    color: #870007;
+  #restart h1 {
+    color: red;
     font-family: "Press Start 2P";
+    font-size: 2rem;
+
   }
 
   #restart-button {
     font-size: 25px;
-    background-color: #870007;
-    color: #fff;
-    padding: 10px 30px;
+    background-color: #ffd300;
+    color: black;
+    padding: 10px;
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
-    margin-bottom: 20px;
     font-family: "Press Start 2P";
   }
 
   #quit-button {
     font-size: 25px;
-    background-color: #870007;
-    color: #fff;
-    padding: 10px 30px;
+    background-color: #ffd300;
+    color: black;
+    padding: 10px;
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
-    margin-bottom: 20px;
     font-family: "Press Start 2P";
   }
 
   .hidden{
     display: none;
   }
+
+  .animation:hover {-webkit-animation-name: animacao2;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-timing-function:  linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    
+    -moz-animation-name: animacao2;
+    -moz-animation-duration: 0.8s;
+    -moz-animation-timing-function:  linear;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    
+    animation-name: animacao2;
+    animation-duration: 0.8s;
+    animation-timing-function:  linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;}
+
+.size {
+  width: 250px;
+  height: 50px;
+}

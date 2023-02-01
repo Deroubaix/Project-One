@@ -12,7 +12,7 @@ class Game {
       this.score = 0;
       this.lives = 5;
       this.livesImg = new Image();
-      this.livesImg.src = "/docs/assets/images/live.png";
+      this.livesImg.src = "/docs/assets/images/life.png";
       this.backgroundImage = new Image();
     }
   
@@ -47,25 +47,25 @@ class Game {
 
     drawLives() {
  if (this.lives === 5){
-   this.ctx.drawImage(this.livesImg, 45, 45)
-   this.ctx.drawImage(this.livesImg, 80, 45)
-   this.ctx.drawImage(this.livesImg, 115, 45)
-   this.ctx.drawImage(this.livesImg, 150, 45)
-   this.ctx.drawImage(this.livesImg, 185, 45)
+   this.ctx.drawImage(this.livesImg, 0, 45)
+   this.ctx.drawImage(this.livesImg, 30, 45)
+   this.ctx.drawImage(this.livesImg, 60, 45)
+   this.ctx.drawImage(this.livesImg, 90, 45)
+   this.ctx.drawImage(this.livesImg, 120, 45)
  } else if (this.lives === 4){
-  this.ctx.drawImage(this.livesImg, 45, 45)
-  this.ctx.drawImage(this.livesImg, 80, 45)
-  this.ctx.drawImage(this.livesImg, 115, 45)
-  this.ctx.drawImage(this.livesImg, 150, 45)
+  this.ctx.drawImage(this.livesImg, 0, 45)
+  this.ctx.drawImage(this.livesImg, 30, 45)
+  this.ctx.drawImage(this.livesImg, 60, 45)
+  this.ctx.drawImage(this.livesImg, 90, 45)
  } else if (this.lives === 3){
-  this.ctx.drawImage(this.livesImg, 45, 45)
-  this.ctx.drawImage(this.livesImg, 80, 45)
-  this.ctx.drawImage(this.livesImg, 115, 45)
+  this.ctx.drawImage(this.livesImg, 0, 45)
+  this.ctx.drawImage(this.livesImg, 30, 45)
+  this.ctx.drawImage(this.livesImg, 60, 45)
  } else if (this.lives === 2){
-  this.ctx.drawImage(this.livesImg, 45, 45)
-  this.ctx.drawImage(this.livesImg, 80, 45)
+  this.ctx.drawImage(this.livesImg, 0, 45)
+  this.ctx.drawImage(this.livesImg, 30, 45)
  } else if (this.lives === 1){
-  this.ctx.drawImage(this.livesImg, 45, 45)  
+  this.ctx.drawImage(this.livesImg, 0, 45)  
   } else {
     
   }
@@ -74,7 +74,7 @@ class Game {
     drawScore() {
       ctx.font = "20px Helvetica";
       ctx.fillStyle = "black";
-      ctx.fillText(`Score: ${this.score}`, 80, 30);
+      ctx.fillText(`Score: ${this.score}`,5, 30);
     }
   
     updateScore() {
