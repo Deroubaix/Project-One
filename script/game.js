@@ -26,7 +26,7 @@ class Game {
       this.clear();
       this.player.newPosition();
       this.player.animateJump();
-      this.player.draw();
+      this.player.draw(this.frames);
       this.updateEnemies();
       this.checkGameOver();
       this.drawScore();
