@@ -66,6 +66,8 @@ class Game {
   this.ctx.drawImage(this.livesImg, 80, 45)
  } else if (this.lives === 1){
   this.ctx.drawImage(this.livesImg, 45, 45)  
+  } else {
+    
   }
 }
   
@@ -96,16 +98,18 @@ class Game {
         this.enemies.push(new Enemy(randomX, 300, randomSize, 30, "red", this.ctx));
       }
     }
-  
-    checkGameOver() {
-      const crashed = this.enemies.some((enemy) => {
-        return this.player.crashWith(enemy);
-      });
-  
-      if (crashed) {
-/*         this.stop();
-        targetRestart.style.display = "block" */
-        this.lives--;
+
+    checkGameOver = () => {
+      const crashed = this.enemies
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (crashed) {
+
+        }
       }
     }
+  
+
   }
+
+
+
