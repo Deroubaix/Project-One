@@ -15,7 +15,7 @@ class Component {
       this.jumpTimer = 0;
       this.jumpForce = 10;
       this.img = new Image();
-      this.img.src = "/docs/assets/images/temporary.jpg";
+      this.img.src = "/docs/assets/images/pixalated-tourist.png";
     }
   
     draw() {
