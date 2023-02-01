@@ -10,6 +10,7 @@ const targetCanvas = document.getElementById("game-board")
 
 const targetRestart = document.getElementById("restart")
 const restartButton = document.getElementById("restart-button")
+const quitButton = document.getElementById("quit-button")
 let player = new Component(0, 0, 75, 75, "Image", ctx);
 
 targetRestart.classList.add("hidden")
