@@ -10,36 +10,40 @@ const targetCanvas = document.getElementById("game-board")
 
 const targetRestart = document.getElementById("restart")
 const restartButton = document.getElementById("restart-button")
-const player = new Component(220, 550, 75, 75, "Image", ctx);
+const quitButton = document.getElementById("quit-button")
 
 targetRestart.classList.add("hidden")
 
-const game = new Game(ctx, 1200, 350, player);
+let player = new Component(0, 0, 75, 75, "Image", ctx);
+let game = new Game(ctx, 1200, 350, player);
 
 startButton.onclick = function () {
-  
+  game = new Game(ctx, 1200, 350, player);
   document.getElementById("game-intro").classList.add("hidden")
-document.getElementById("canvas").classList.remove("hidden")
+  document.getElementById("canvas").classList.remove("hidden")
 
   game.start(); 
-/*   if (targetDiv.style.display !== "none") {
-  if (targetDiv.style.display !== "none" && targetCanvas.style.display !== "none") {
-    targetDiv.style.display = "none"
-    targetCanvas.style.display = "block"
-  } else {
-    targetDiv.style.display = "block"
-    targetDiv.style.display = "block" 
-    targetCanvas.style.display = "none"
-  }
- }; */
+
 };
 
 restartButton.onclick = function() {
-  const game = new Game(ctx, 1200, 350, player);
+
+  player = new Component(0, 0, 75, 75, "Image", ctx);
+  game = new Game(ctx, 1200, 350, player);
    if (targetRestart.style.display !== "none") {
        targetRestart.style.display = "none"
-       game.start()
      } 
+     game.start()  
+
+}
+
+quitButton.onclick = function() {
+  document.getElementById("game-intro").classList.remove("hidden")
+  document.getElementById("canvas").classList.add("hidden")
+  if (targetRestart.style.display !== "none") {
+    targetRestart.style.display = "none"
+  } 
+
 }
 
 document.addEventListener("keydown", (e) => {

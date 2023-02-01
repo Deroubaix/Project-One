@@ -16,6 +16,7 @@ class Game {
       this.backgroundImage = new Image();
     }
   
+  
     start() {
       this.intervalId = setInterval(this.update, 1000 / 60);
     }
@@ -26,7 +27,6 @@ class Game {
       this.player.newPosition();
       this.player.animateJump();
       this.player.draw();
-      
       this.updateEnemies();
       this.checkGameOver();
       this.drawScore();
@@ -98,18 +98,19 @@ class Game {
         this.enemies.push(new Enemy(randomX, 300, randomSize, 30, "red", this.ctx));
       }
     }
-
-    checkGameOver = () => {
-      const crashed = this.enemies
+  
+    checkGameOver() {
       for (let i = 0; i < this.enemies.length; i++) {
-        if (crashed) {
-
+        if (this.player.crashWith(this.enemies[i])) {
+          this.enemies.splice(i, 1);
+          this.lives--;
         }
+      } 
+      if (this.lives === 0) {
+        this.stop()
+        targetRestart.style.display = "block"
+        this.player.update()
+        
       }
     }
-  
-
   }
-
-
-
