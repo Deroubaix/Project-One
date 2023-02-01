@@ -93,7 +93,7 @@ class Game {
         console.log("Create enemy")
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
-        let randomX = 1400 +  Math.floor(Math.random() * (300 - 100) + 100)
+        let randomX = 1400 +  Math.floor(Math.random() * (400 - 100) + 100)
   
         this.enemies.push(new Enemy(randomX, 400, randomSize, 30, "red", this.ctx));
       }
