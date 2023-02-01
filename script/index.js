@@ -10,12 +10,11 @@ const targetCanvas = document.getElementById("game-board")
 
 const targetRestart = document.getElementById("restart")
 const restartButton = document.getElementById("restart-button")
-const quitButton = document.getElementById("quit-button")
+let player = new Component(0, 0, 75, 75, "Image", ctx);
 
 targetRestart.classList.add("hidden")
 
-let player = new Component(0, 0, 75, 75, "Image", ctx);
-let game = new Game(ctx, 1200, 350, player);
+let game = new Game(ctx, 1200, 450, player);
 
 startButton.onclick = function () {
   game = new Game(ctx, 1200, 350, player);
@@ -27,9 +26,8 @@ startButton.onclick = function () {
 };
 
 restartButton.onclick = function() {
-
   player = new Component(0, 0, 75, 75, "Image", ctx);
-  game = new Game(ctx, 1200, 350, player);
+  game = new Game(ctx, 1200, 450, player);
    if (targetRestart.style.display !== "none") {
        targetRestart.style.display = "none"
      } 

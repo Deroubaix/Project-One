@@ -40,9 +40,9 @@ class Game {
     }
   
     clear() {
-      this.backgroundImage.src = "docs/assets/images/lisboa_preview_rev_1.png";
-      this.ctx.clearRect(0, 0 , 1200, 350);
-      this.ctx.drawImage(this.backgroundImage, 0, -125, 1200, 475);
+      this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
+      this.ctx.clearRect(0, 0 , 1200, 450);
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
     }
 
     drawLives() {
@@ -93,9 +93,9 @@ class Game {
         console.log("Create enemy")
         let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
   
-        let randomX = 1200 +  Math.floor(Math.random() * (300 - 100) + 100)
+        let randomX = 1400 +  Math.floor(Math.random() * (300 - 100) + 100)
   
-        this.enemies.push(new Enemy(randomX, 300, randomSize, 30, "red", this.ctx));
+        this.enemies.push(new Enemy(randomX, 400, randomSize, 30, "red", this.ctx));
       }
     }
   
