@@ -16,9 +16,13 @@ class Component {
       this.jumpForce = 10;
       this.img = new Image();
       this.img.src = "/docs/assets/images/pixalated-tourist.png";
+
+      this.playerImage = img;
+      this.playerImages = [img1, img2, img3, img4, img5, img6]
     }
   
     draw() {
+      this.img = this.images[Math.floor(frames % 30  / 3.75)]; 
       this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
@@ -54,6 +58,8 @@ class Component {
     right() {
       return this.x + this.w;
     }
+
+    
 
     animateJump() {
 
