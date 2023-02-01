@@ -41,8 +41,8 @@ class Game {
   
     clear() {
       this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
-      this.ctx.clearRect(0, 0 , 1400, 450);
-      this.ctx.drawImage(this.backgroundImage, 0, 0, 1400, 450);
+      this.ctx.clearRect(0, 0 , 1200, 450);
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
     }
 
     drawLives() {
