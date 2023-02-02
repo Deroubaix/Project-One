@@ -14,6 +14,9 @@ class Component {
       this.isGrounded = false;
       this.jumpTimer = 0;
       this.jumpForce = 10;
+      this.animationSpeed = 5;
+      this.animation = 0;
+
       //this.img.src = "/docs/assets/images/pixalated-tourist.png";
 
       const img1 = new Image();
@@ -59,9 +62,14 @@ class Component {
     }
   
     draw(frames) {
-      this.img = this.images[Math.floor(frames % 30 / 3.75)]
+
+      if (game.frames % this.animationSpeed === 1) {
+        this.animation = (this.animation + 1) % this.images.length;
+      }
+      
+      this.img = this.images[this.animation]
       ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-    }
+  }
   
     newPosition() {
       this.x += this.speedX;
@@ -89,11 +97,11 @@ class Component {
     }
   
     left() {
-      return this.x;
+      return this.x + 10
     }
   
     right() {
-      return this.x + this.w;
+      return this.x + this.w - 10
     }
 
     animateJump() {
@@ -134,36 +142,40 @@ class Component {
       );
     }
   }
+
+  let img1 = new Image();
+  img1.src = "/docs/assets/images/weed.png";
+  let img2 = new Image();
+  img2.src = "docs/assets/images/coke.png";
+  let img3 = new Image();
+  img3.src = "docs/assets/images/mushroom.png";
   
   class Enemy {
-    constructor(x, y, w, h, color, ctx) {
+    constructor(x, y, img, type, ctx) {
       this.x = x;
       this.y = y;
       this.w = 50;
       this.h = 50;
-      this.color = color;
+      this.img = img;
       this.ctx = ctx;
       this.speedX = 0;
       this.speedY = 0;
+      this.type = type
 
-      this.imgType = Math.floor(Math.random() * 3) + 1;
+     /*  this.imgType = Math.floor(Math.random() * 3) + 1; */
 
-      this.img = new Image();
-      this.img.src = "/docs/assets/images/weed.png";
-      this.img2 = new Image();
-      this.img2.src = "docs/assets/images/coke.png";
-      this.img3 = new Image();
-      this.img3.src = "docs/assets/images/mushroom.png";
+  
     }
   
     draw() {
-      if (this.imgType === 1) {
+ /*      if (this.imgType === 1) {
         this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
       } else if (this.imgType === 2){
         this.ctx.drawImage(this.img2, this.x, this.y, this.w, this.h);
       } else {
         this.ctx.drawImage(this.img3, this.x, this.y, this.w, this.h);
-      }
+      } */
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
     newPosition() {

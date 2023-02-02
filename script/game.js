@@ -1,5 +1,7 @@
 /** @type {HTMLCanvasElement} */
 
+
+
 class Game {
     constructor(ctx, width, height, player) {
       this.ctx = ctx;
@@ -14,6 +16,8 @@ class Game {
       this.livesImg = new Image();
       this.livesImg.src = "/docs/assets/images/life.png";
       this.backgroundImage = new Image();
+      this.count = 0;
+      this.obstacle = 0;
     }
   
   
@@ -28,10 +32,11 @@ class Game {
       this.player.animateJump();
       this.player.draw(this.frames);
       this.updateEnemies();
-      this.checkGameOver();
+      this.checkGame();
       this.drawScore();
       this.updateScore();
       this.drawLives()
+      console.log(this.player.animationSpeed)
     };
   
     stop() {
@@ -85,27 +90,49 @@ class Game {
   
     updateEnemies() {
       for (let i = 0; i < this.enemies.length; i++) {
-        this.enemies[i].x -= 2;
+        this.enemies[i].x -= 5;
         this.enemies[i].draw();
       }
-  
-      if (this.frames % 240  === 0) {
-        console.log("Create enemy")
-        let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
-  
-        let randomX = 1400 +  Math.floor(Math.random() * (400 - 100) + 100)
-  
-        this.enemies.push(new Enemy(randomX, 400, randomSize, 30, "red", this.ctx));
+      
+      let randomX = 1200 +  Math.floor(Math.random() * (400 - 100) + 100)
+
+    if (this.frames % 70 === 0) {
+
+      if (this.count === 0){
+        this.enemies.push(new Enemy(randomX, 400, img1, "weed", this.ctx))
+        this.count ++
+      }else if (this.count === 1){
+        this.enemies.push(new Enemy(randomX, 400, img2, "coke", this.ctx))
+        this.count ++
+      }else if (this.count === 2){
+        this.enemies.push(new Enemy(randomX, 400, img3, "mushroom", this.ctx))
+        this.count = 0
       }
+      } 
+
     }
   
-    checkGameOver() {
+    checkGame() {
       for (let i = 0; i < this.enemies.length; i++) {
         if (this.player.crashWith(this.enemies[i])) {
           this.enemies.splice(i, 1);
           this.lives--;
+          if (this.enemies[i].type == "coke"){ //weed
+            this.player.animationSpeed = 15
+          }  else if (this.enemies[i].type === "mushroom"){ //coke
+            this.player.animationSpeed = 2
+          }  else if (this.enemies[i].type === "weed"){ //mushroom
+            document.getElementById("canvas").classList.add("shroom")
+            document.getElementById("body").classList.add("shroom")
+
+     setTimeout(() => {
+              document.getElementById("canvas").classList.remove("shroom")
+              document.getElementById("body").classList.remove("shroom")
+            }, 10000)
+          } 
         }
       } 
+      
       if (this.lives === 0) {
         this.stop()
         targetRestart.style.display = "block"
