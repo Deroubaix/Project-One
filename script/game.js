@@ -18,12 +18,28 @@ class Game {
       this.backgroundImage = new Image();
       this.count = 0;
       this.obstacle = 0;
-    }
-  
-  
-    start() {
+    } 
+
+  start() {
       this.intervalId = setInterval(this.update, 1000 / 60);
+      this.drawScore()
     }
+
+  drawScore() {
+    ctx.font = "20px Helvetica";
+    ctx.fillStyle = "black";
+    ctx.fillText(`Score: ${this.score}`, 12, 20);
+  }
+
+  screenScore() {
+    this.ctx.fillStyle = "black"
+    ctx.fillRect(305, 175, 590, 140);
+    ctx.fillStyle = "#ffd300";
+    ctx.font = "40px Helvetica";
+    ctx.textAlign = "center";
+    ctx.fillText("Your Score: " + this.score, canvas.width / 2, canvas.height / 2 + 30);
+  }
+  
   
     update = () => {
       this.frames++;
@@ -38,6 +54,11 @@ class Game {
       this.drawLives()
       console.log(this.player.animationSpeed)
     };
+
+    updateScore() {
+      if (this.frames % 10 === 0) {
+        this.score++;
+      }}
   
     stop() {
       clearInterval(this.intervalId);
@@ -50,31 +71,29 @@ class Game {
       this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
     }
 
-    drawLives() {
- if (this.lives === 5){
-   this.ctx.drawImage(this.livesImg, 0, 45)
-   this.ctx.drawImage(this.livesImg, 30, 45)
-   this.ctx.drawImage(this.livesImg, 60, 45)
-   this.ctx.drawImage(this.livesImg, 90, 45)
-   this.ctx.drawImage(this.livesImg, 120, 45)
- } else if (this.lives === 4){
-  this.ctx.drawImage(this.livesImg, 0, 45)
-  this.ctx.drawImage(this.livesImg, 30, 45)
-  this.ctx.drawImage(this.livesImg, 60, 45)
-  this.ctx.drawImage(this.livesImg, 90, 45)
- } else if (this.lives === 3){
-  this.ctx.drawImage(this.livesImg, 0, 45)
-  this.ctx.drawImage(this.livesImg, 30, 45)
-  this.ctx.drawImage(this.livesImg, 60, 45)
- } else if (this.lives === 2){
-  this.ctx.drawImage(this.livesImg, 0, 45)
-  this.ctx.drawImage(this.livesImg, 30, 45)
- } else if (this.lives === 1){
-  this.ctx.drawImage(this.livesImg, 0, 45)  
-  } else {
-    
-  }
-}
+  drawLives() {
+    if (this.lives === 5){
+      this.ctx.drawImage(this.livesImg, 0, 45)
+      this.ctx.drawImage(this.livesImg, 30, 45)
+      this.ctx.drawImage(this.livesImg, 60, 45)
+      this.ctx.drawImage(this.livesImg, 90, 45)
+      this.ctx.drawImage(this.livesImg, 120, 45)
+    } else if (this.lives === 4){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+     this.ctx.drawImage(this.livesImg, 60, 45)
+     this.ctx.drawImage(this.livesImg, 90, 45)
+    } else if (this.lives === 3){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+     this.ctx.drawImage(this.livesImg, 60, 45)
+    } else if (this.lives === 2){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+    } else if (this.lives === 1){
+     this.ctx.drawImage(this.livesImg, 0, 45)  
+     } }
+
   
     drawScore() {
       ctx.font = "20px Helvetica";
@@ -108,9 +127,8 @@ class Game {
         this.enemies.push(new Enemy(randomX, 400, img3, "mushroom", this.ctx))
         this.count = 0
       }
-      } 
-
-    }
+    } 
+  }
   
     checkGame() {
       for (let i = 0; i < this.enemies.length; i++) {
@@ -139,5 +157,4 @@ class Game {
         this.player.update()
         
       }
-    }
-  }
+    }}
