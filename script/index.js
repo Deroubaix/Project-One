@@ -28,7 +28,7 @@ startButton.onclick = function () {
 };
 
 restartButton.onclick = function() {
-   player = new Component(0, 0, 75, 75, "Image", ctx);
+   player = new Component(0, 0, 100, 100, "Image", ctx);
    game = new Game(ctx, 1200, 450, player);
      if (targetRestart.style.display !== "none") {
        targetRestart.style.display = "none"
