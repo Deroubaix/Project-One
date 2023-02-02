@@ -33,29 +33,29 @@ class Component {
       const img12 = new Image();
   
       img1.addEventListener("load", () => {})
-      img1.src = "./docs/assets/images/frame_00_delay-0.08s.png";
+      img1.src = "docs/assets/images/frame_00_delay-0.08s.png";
       img2.addEventListener("load", () => {})
-      img2.src = "./docs/assets/images/frame_01_delay-0.08s.png";
+      img2.src = "docs/assets/images/frame_01_delay-0.08s.png";
       img3.addEventListener("load", () => {})
-      img3.src = "./docs/assets/images/frame_02_delay-0.08s.png";
+      img3.src = "docs/assets/images/frame_02_delay-0.08s.png";
       img4.addEventListener("load", () => {})
-      img4.src = "./docs/assets/images/frame_03_delay-0.08s.png";
+      img4.src = "docs/assets/images/frame_03_delay-0.08s.png";
       img5.addEventListener("load", () => {})
-      img5.src = "./docs/assets/images/frame_04_delay-0.08s.png";
+      img5.src = "docs/assets/images/frame_04_delay-0.08s.png";
       img6.addEventListener("load", () => {})
-      img6.src = "./docs/assets/images/frame_05_delay-0.08s.png";
+      img6.src = "docs/assets/images/frame_05_delay-0.08s.png";
       img7.addEventListener("load", () => {})
-      img7.src = "./docs/assets/images/frame_06_delay-0.08s.png";
+      img7.src = "docs/assets/images/frame_06_delay-0.08s.png";
       img8.addEventListener("load", () => {})
-      img8.src = "./docs/assets/images/frame_07_delay-0.08s.png";
+      img8.src = "docs/assets/images/frame_07_delay-0.08s.png";
       img9.addEventListener("load", () => {})
-      img9.src = "./docs/assets/images/frame_08_delay-0.08s.png";
+      img9.src = "docs/assets/images/frame_08_delay-0.08s.png";
       img10.addEventListener("load", () => {})
-      img10.src = "./docs/assets/images/frame_09_delay-0.08s.png";
+      img10.src = "docs/assets/images/frame_09_delay-0.08s.png";
       img11.addEventListener("load", () => {})
-      img11.src = "./docs/assets/images/frame_10_delay-0.08s.png";
+      img11.src = "docs/assets/images/frame_10_delay-0.08s.png";
       img12.addEventListener("load", () => {})
-      img12.src = "./docs/assets/images/frame_11_delay-0.08s.png";
+      img12.src = "docs/assets/images/frame_11_delay-0.08s.png";
   
       this.img = img1;
       this.images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12]
@@ -144,7 +144,7 @@ class Component {
   }
 
   let img1 = new Image();
-  img1.src = "/docs/assets/images/weed.png";
+  img1.src = "docs/assets/images/weed.png";
   let img2 = new Image();
   img2.src = "docs/assets/images/coke.png";
   let img3 = new Image();
