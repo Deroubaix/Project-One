@@ -11,14 +11,14 @@ const targetCanvas = document.getElementById("game-board")
 const targetRestart = document.getElementById("restart")
 const restartButton = document.getElementById("restart-button")
 const quitButton = document.getElementById("quit-button")
-let player = new Component(0, 0, 75, 75, "Image", ctx);
+let player = new Component(0, 0, 100, 100, "Image", ctx);
 
 targetRestart.classList.add("hidden")
 
 let game = new Game(ctx, 1200, 450, player);
 
 startButton.onclick = function () {
-  player = new Component(0, 0, 75, 75);
+  player = new Component(0, 0, 100, 100);
   game = new Game(ctx, 1200, 350, player);
   document.getElementById("game-intro").classList.add("hidden")
   document.getElementById("canvas").classList.remove("hidden")
