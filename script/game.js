@@ -1,5 +1,7 @@
 /** @type {HTMLCanvasElement} */
 
+
+
 class Game {
   constructor(ctx, width, height, player) {
     this.ctx = ctx;
@@ -120,7 +122,6 @@ class Game {
 
   start() {
     this.intervalId = setInterval(this.update, 1000 / 60);
-    this.drawScore()
   }
 
   update = () => {
@@ -133,7 +134,7 @@ class Game {
     this.checkGameOver();
     this.drawScore();
     this.updateScore();
-    this.drawLives(this.frames);
+    this.drawLives();
   };
 
   stop() {
@@ -145,6 +146,31 @@ class Game {
     this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
     this.ctx.clearRect(0, 0, 1200, 450);
     this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
+  }
+
+  drawLives() {
+    if (this.lives === 5) {
+      this.ctx.drawImage(this.livesImg, 10, 30);
+      this.ctx.drawImage(this.livesImg, 40, 30);
+      this.ctx.drawImage(this.livesImg, 70, 30);
+      this.ctx.drawImage(this.livesImg, 100, 30);
+      this.ctx.drawImage(this.livesImg, 130, 30);
+    } else if (this.lives === 4) {
+      this.ctx.drawImage(this.livesImg, 10, 30);
+      this.ctx.drawImage(this.livesImg, 40, 30);
+      this.ctx.drawImage(this.livesImg, 70, 30);
+      this.ctx.drawImage(this.livesImg, 100, 30);
+    } else if (this.lives === 3) {
+      this.ctx.drawImage(this.livesImg, 10, 30);
+      this.ctx.drawImage(this.livesImg, 40, 30);
+      this.ctx.drawImage(this.livesImg, 70, 30);
+    } else if (this.lives === 2) {
+      this.ctx.drawImage(this.livesImg, 10, 30);
+      this.ctx.drawImage(this.livesImg, 40, 30);
+    } else if (this.lives === 1) {
+      this.ctx.drawImage(this.livesImg, 10, 30);
+    } else {
+    }
   }
 
   drawScore() {
@@ -165,43 +191,122 @@ class Game {
       this.drawScore() === false
     } 
   }
+  
+  
+    update = () => {
+      this.frames++;
+      this.clear();
+      this.player.newPosition();
+      this.player.animateJump();
+      this.player.draw(this.frames);
+      this.updateEnemies();
+      this.checkGame();
+      this.drawScore();
+      this.updateScore();
+      this.drawLives()
+      console.log(this.player.animationSpeed)
+    };
 
-  updateScore() {
-    if (this.frames % 10 === 0) {
-      this.score++;
+    updateScore() {
+      if (this.frames % 10 === 0) {
+        this.score++;
+      }}
+  
+    stop() {
+      clearInterval(this.intervalId);
+      targetRestart.classList.remove("hidden")
     }
-  }
-
-  updateEnemies() {
-    for (let i = 0; i < this.enemies.length; i++) {
-      this.enemies[i].x -= 2;
-      this.enemies[i].draw();
+  
+    clear() {
+      this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
+      this.ctx.clearRect(0, 0 , 1200, 450);
+      this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
     }
 
-    if (this.frames % 240 === 0) {
-      console.log("Create enemy");
-      let randomSize = Math.floor(Math.random() * (250 - 100) + 100);
+  drawLives() {
+    if (this.lives === 5){
+      this.ctx.drawImage(this.livesImg, 0, 45)
+      this.ctx.drawImage(this.livesImg, 30, 45)
+      this.ctx.drawImage(this.livesImg, 60, 45)
+      this.ctx.drawImage(this.livesImg, 90, 45)
+      this.ctx.drawImage(this.livesImg, 120, 45)
+    } else if (this.lives === 4){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+     this.ctx.drawImage(this.livesImg, 60, 45)
+     this.ctx.drawImage(this.livesImg, 90, 45)
+    } else if (this.lives === 3){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+     this.ctx.drawImage(this.livesImg, 60, 45)
+    } else if (this.lives === 2){
+     this.ctx.drawImage(this.livesImg, 0, 45)
+     this.ctx.drawImage(this.livesImg, 30, 45)
+    } else if (this.lives === 1){
+     this.ctx.drawImage(this.livesImg, 0, 45)  
+     } }
 
-      let randomX = 1400 + Math.floor(Math.random() * (400 - 100) + 100);
-
-      this.enemies.push(
-        new Enemy(randomX, 400, randomSize, 30, "red", this.ctx)
-      );
+  
+    drawScore() {
+      ctx.font = "20px Helvetica";
+      ctx.fillStyle = "black";
+      ctx.fillText(`Score: ${this.score}`,5, 30);
     }
-  }
-
-  checkGameOver() {
-    for (let i = 0; i < this.enemies.length; i++) {
-      if (this.player.crashWith(this.enemies[i])) {
-        this.enemies.splice(i, 1);
-        this.lives--;
+  
+    updateScore() {
+      if (this.frames % 10 === 0) {
+        this.score++;
       }
     }
-    if (this.lives === 0) {
-      this.stop();
-      targetRestart.style.display = "block";
-      this.screenScore()
-      this.player.update();
-    }
+  
+    updateEnemies() {
+      for (let i = 0; i < this.enemies.length; i++) {
+        this.enemies[i].x -= 5;
+        this.enemies[i].draw();
+      }
+      
+      let randomX = 1200 +  Math.floor(Math.random() * (400 - 100) + 100)
+
+    if (this.frames % 70 === 0) {
+
+      if (this.count === 0){
+        this.enemies.push(new Enemy(randomX, 400, img1, "weed", this.ctx))
+        this.count ++
+      }else if (this.count === 1){
+        this.enemies.push(new Enemy(randomX, 400, img2, "coke", this.ctx))
+        this.count ++
+      }else if (this.count === 2){
+        this.enemies.push(new Enemy(randomX, 400, img3, "mushroom", this.ctx))
+        this.count = 0
+      }
+    } 
   }
-}
+  
+    checkGame() {
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (this.player.crashWith(this.enemies[i])) {
+          this.enemies.splice(i, 1);
+          this.lives--;
+          if (this.enemies[i].type == "coke"){ //weed
+            this.player.animationSpeed = 15
+          }  else if (this.enemies[i].type === "mushroom"){ //coke
+            this.player.animationSpeed = 2
+          }  else if (this.enemies[i].type === "weed"){ //mushroom
+            document.getElementById("canvas").classList.add("shroom")
+            document.getElementById("body").classList.add("shroom")
+
+     setTimeout(() => {
+              document.getElementById("canvas").classList.remove("shroom")
+              document.getElementById("body").classList.remove("shroom")
+            }, 10000)
+          } 
+        }
+      } 
+      
+      if (this.lives === 0) {
+        this.stop()
+        targetRestart.style.display = "block"
+        this.player.update()
+        
+      }
+    }}
