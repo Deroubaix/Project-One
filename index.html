@@ -8,33 +8,41 @@
     <title>Escape Baixa</title>
   </head>
   <body id="body">
-
-
     <div id="game-intro">
       <h1>Escape Baixa</h1>
       <button id="start-button" class="animation">Start Game</button>
-      <p>Jump to resist the urge of feeding your <br> addiction and being <span>SCAMMED!</span></p>
+      <p>
+        Collect mushrooms to become invincible, <br />
+        dodge scams, and press <span>SPACE</span> <br />
+        to take down the boss!
+      </p>
       <img src="docs/assets/images/keyboard.png" alt="" class="arrows-img" />
     </div>
-     
-    
 
-      <canvas class="hidden" id="canvas" width="1200" height="450"></canvas>
+    <canvas class="hidden" id="canvas" width="1200" height="500"></canvas>
 
+    <div id="restart" class="">
+      <h1>YOU GOT SCAMMED!</h1>
+      <button id="restart-button" class="animation size">Restart</button>
+      <button id="quit-button" class="animation size">Quit</button>
+    </div>
 
-  
-  <div id="restart" class="">
-    <h1>YOU GOT SCAMMED!</h1>
-    <button id="restart-button" class="animation size">Restart</button>
-    <button id="quit-button" class="animation size">Quit</button>
-  </div>
-   
-  
-    <script type="text/javascript" src="script/component.js"></script>
+    <div id="victory" class="hidden">
+      <h1>You Escaped Baixa!</h1>
+      <p>Your Score: <span id="final-score"></span></p>
+      <button id="restart-button-victory" class="animation size">
+        Restart
+      </button>
+      <button id="quit-button-victory" class="animation size">Quit</button>
+    </div>
+
+    <script type="text/javascript" src="script/bossProjectile.js"></script>
+    <script type="text/javascript" src="script/projectile.js"></script>
+    <script type="text/javascript" src="script/player.js"></script>
+    <script type="text/javascript" src="script/enemy.js"></script>
+    <script type="text/javascript" src="script/passport.js"></script>
+    <script type="text/javascript" src="script/boss.js"></script>
     <script type="text/javascript" src="script/game.js"></script>
     <script type="text/javascript" src="script/index.js"></script>
-  
   </body>
 </html>
-
-  

@@ -1,19 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-@-webkit-keyframes animacao2 { from {-webkit-transform: scale(1);} 
- to {-webkit-transform: scale(1.2);} }
+@-webkit-keyframes animacao2 {
+  from {
+    -webkit-transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.2);
+  }
+}
 
-@-moz-keyframes animacao2 { from {-moz-transform: scale(1);} 
- to {-moz-transform: scale(1.1);} }
+@-moz-keyframes animacao2 {
+  from {
+    -moz-transform: scale(1);
+  }
+  to {
+    -moz-transform: scale(1.1);
+  }
+}
 
-@keyframes animacao2 { from {transform: scale(1);} 
- to {transform: scale(1.1);} }
+@keyframes animacao2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
 
- .shroom {
-  filter: saturate(2);
-} 
- 
-body, html {
+/* .shroom {
+  filter: saturate(2) brightness(1.2);
+  box-shadow: 0 0 15px 5px #ffd300;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 15px 5px #ffd300;
+  }
+  to {
+    box-shadow: 0 0 25px 10px #ffd300;
+  }
+} */
+
+.shroom {
+  filter: saturate(2) brightness(1.2);
+  box-shadow: 0 -10px 50px 10px #ffd300;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 -10px 30px 10px #ffd300;
+  }
+  to {
+    box-shadow: 0 -30px 40px 30px #ffd300;
+  }
+}
+
+.coke-effect {
+  animation: jitter 0.1s infinite;
+}
+
+@keyframes jitter {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  25% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  50% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  75% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -1px) rotate(-1deg);
+  }
+}
+
+.weed-effect {
+  filter: blur(2px);
+  transition: filter 0.5s ease-in-out;
+}
+
+body,
+html {
   font-family: "Press Start 2P";
   display: flex;
   justify-content: center;
@@ -22,112 +94,162 @@ body, html {
   background-image: url("../docs/assets/images/sky.png");
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh; 
-  margin: 0
+  height: 100vh;
+  margin: 0;
 }
 
 #canvas {
   width: 100vw;
 }
 
- #start-button {
-    font-size: 30px;
-    background-color: black;
-    color: #ffd300;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: "Press Start 2P";
-  }
+#start-button {
+  font-size: 30px;
+  background-color: black;
+  color: #ffd300;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P";
+}
 
-  #game-intro p {
-    line-height: 1.6rem;
-  }
+#game-intro p {
+  line-height: 1.6rem;
+}
 
-  #game-intro p span {
-    color: #ffd300;
-    letter-spacing: 0.2rem;
-    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
-  }
+#game-intro p span {
+  color: #ffd300;
+  letter-spacing: 0.2rem;
+  text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black,
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black,
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black,
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black,
+    0 0 4px black;
+}
 
-  .arrows-img {
-    width: 200px;
-    margin-bottom: 50px;
-  }
+.arrows-img {
+  width: 200px;
+  margin-bottom: 50px;
+}
 
-  h1 {
-    font-size: 5rem;
-  }
+h1 {
+  font-size: 5rem;
+}
 
-  #restart {
-    background-color: black;
-    height: 120px;
-    width: 550px;
-    position: absolute;
-    bottom: 30%;
-    top: 30%;
-    padding:40px;
-   /*  border-radius: 40px; */
-    
-  }
+#restart {
+  background-color: black;
+  width: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  border: 2px solid #ffd300; 
+  border-radius: 10px;
+  text-align: center;
+  z-index: 100;
+}
 
-  #restart h1 {
-    color:#ffd300;
-    font-family: "Press Start 2P";
-    font-size: 2rem;
+#restart h1 {
+  color: #ffd300;
+  font-family: "Press Start 2P";
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
 
-  }
+#restart-button,
+#quit-button {
+  font-size: 25px;
+  background-color: #ffd300;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: "Press Start 2P";
+}
 
-  #restart-button {
-    font-size: 25px;
-    background-color: #ffd300;
-    color: black;
-    padding: 10px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    font-family: "Press Start 2P";
-  }
+#restart-button:hover,
+#quit-button:hover {
+  background-color: #ffdf00;
+}
 
-  #quit-button {
-    font-size: 25px;
-    background-color: #ffd300;
-    color: black;
-    padding: 10px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    font-family: "Press Start 2P";
-  }
-  .details {
-    width: 250px;
-    height: 50px;
-    color: white;
+#victory {
+  background: linear-gradient(
+    180deg,
+    #345237,
+    #000
+  );
+  color: white;
+  width: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  border: 2px solid #ffd300;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8);
+  animation: fadeIn 1s ease-in-out;
+  text-align: center;
+}
 
-  }
-  .hidden{
-    display: none;
-  }
+#victory h1 {
+  font-size: 2.5rem;
+  color: #ffd300;
+  text-shadow: 2px 2px 5px #000;
+  margin-bottom: 20px;
+}
 
-  .animation:hover {-webkit-animation-name: animacao2;
-    -webkit-animation-duration: 0.8s;
-    -webkit-animation-timing-function:  linear;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
-    
-    -moz-animation-name: animacao2;
-    -moz-animation-duration: 0.8s;
-    -moz-animation-timing-function:  linear;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-direction: alternate;
-    
-    animation-name: animacao2;
-    animation-duration: 0.8s;
-    animation-timing-function:  linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;}
+#victory p {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 3px #000;
+  margin-bottom: 30px;
+}
+
+#victory button {
+  font-size: 1.2rem;
+  background: linear-gradient(180deg, #ffd300, #ffaa00);
+  color: black;
+  padding: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Press Start 2P", sans;
+}
+
+.details {
+  width: 250px;
+  height: 50px;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.animation:hover {
+  -webkit-animation-name: animacao2;
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+
+  -moz-animation-name: animacao2;
+  -moz-animation-duration: 0.8s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+
+  animation-name: animacao2;
+  animation-duration: 0.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
 .size {
   width: 250px;

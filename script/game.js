@@ -1,5 +1,14 @@
 /** @type {HTMLCanvasElement} */
 
+const imgWeed = new Image();
+imgWeed.src = "docs/assets/images/weed.png";
+
+const imgCoke = new Image();
+imgCoke.src = "docs/assets/images/coke.png";
+
+const imgMushroom = new Image();
+imgMushroom.src = "docs/assets/images/mushroom.png";
+
 class Game {
   constructor(ctx, width, height, player) {
     this.ctx = ctx;
@@ -9,10 +18,22 @@ class Game {
     this.intervalId = null;
     this.frames = 0;
     this.enemies = [];
+    this.passports = [];
+    this.passportsCollected = 0;
+    this.boss = null;
     this.score = 0;
     this.lives = 5;
-    this.count = 0;
+    this.targetPassports = 20;
     this.backgroundImage = new Image();
+    this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
+    this.difficultyIncreased = false;
+    this.enemySpawnInterval = 120;
+    this.bossBattleStarted = false;
+    this.projectiles = [];
+    this.playerInvincible = false;
+    this.invincibilityDuration = 60;
+    this.invincibilityTimer = 0;
+    this.initialize();
 
     const img0 = new Image();
     const img1 = new Image();
@@ -88,36 +109,60 @@ class Game {
     img23.addEventListener("load", () => {});
     img23.src = "docs/assets/images/heart/frame_23_delay-0.04s.gif";
 
-    this.img = img1;
-    this.images = [img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,
-                  img14,img15,img16,img17,img18,img19,img20,img21,img22,img23,];
+    this.images = [];
+    for (let i = 0; i <= 23; i++) {
+      const img = new Image();
+      img.src = `docs/assets/images/heart/frame_${String(i).padStart(
+        2,
+        "0"
+      )}_delay-0.04s.gif`;
+      this.images.push(img);
+    }
+  }
+
+  initialize() {
+    this.intervalId = null;
+    this.frames = 0;
+    this.enemies = [];
+    this.passports = [];
+    this.passportsCollected = 0;
+    this.boss = null;
+    this.score = 0;
+    this.lives = 5;
+    this.difficultyIncreased = false;
+    this.bossBattleStarted = false;
+    this.enemySpawnInterval = 120;
   }
 
   start() {
-    this.intervalId = setInterval(this.update, 1000 / 60);
-    this.drawScore()
-    this.drawLives(this.frames)
-  }
-
-  drawScore() {
-    ctx.font = "20px Helvetica";
-    ctx.fillStyle = "white";
-    ctx.fillText(`Score: ${this.score}`, 60, 20);
-  }
-
-  screenScore() {
-    this.ctx.fillStyle = "black";
-    ctx.fillRect(305, 175, 590, 140);
-    ctx.fillStyle = "#ffd300";
-    ctx.font = "40px Helvetica";
-    ctx.textAlign = "center";
-    ctx.fillText(
-      "Your Score: " + this.score, canvas.width / 2, canvas.height / 2 + 30
-    );
-
-    if (this.screenScore() === true) {
-      this.drawScore() === false;
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
     }
+    this.intervalId = setInterval(() => this.update(), 1000 / 60);
+    this.frames = 0;
+    this.drawScore();
+    this.drawLives(this.frames);
+  }
+
+  stop() {
+    clearInterval(this.intervalId);
+    const gameOverScreen = document.getElementById("restart");
+    const victoryScreen = document.getElementById("victory");
+    if (this.lives <= 0) {
+      gameOverScreen.classList.remove("hidden");
+    }
+    if (!victoryScreen.classList.contains("hidden")) {
+      victoryScreen.classList.add("hidden");
+    }
+  }
+
+  clear() {
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.drawImage(this.backgroundImage, 0, 0, this.width, this.height);
+  }
+
+  reset() {
+    this.initialize();
   }
 
   update = () => {
@@ -127,52 +172,105 @@ class Game {
     this.player.animateJump();
     this.player.draw(this.frames);
     this.updateEnemies();
+    this.updatePassports();
     this.checkGame();
     this.drawScore();
     this.updateScore();
     this.drawLives(this.frames);
-    console.log(this.enemies)
+    this.updateScore();
+    this.updateProjectiles();
+    this.drawBossHealth();
+
+    if (this.passportsCollected >= 10 && !this.difficultyIncreased) {
+      this.increaseDifficulty();
+      this.difficultyIncreased = true;
+    }
+
+    if (this.passportsCollected >= 20 && !this.bossBattleStarted) {
+      this.spawnBoss();
+      this.bossBattleStarted = true;
+    }
+
+    if (this.boss) {
+      this.boss.update(this.player.x);
+      this.boss.draw();
+
+      for (let i = 0; i < this.boss.projectiles.length; i++) {
+        const projectile = this.boss.projectiles[i];
+        if (this.checkCollision(projectile, this.player)) {
+          this.lives--;
+          this.boss.projectiles.splice(i, 1);
+          i--;
+        }
+      }
+
+      if (this.player.crashWith(this.boss)) {
+        this.lives--;
+      }
+
+      if (this.boss && this.boss.health <= 0) {
+        this.winGame();
+        return;
+      }
+    }
+    if (this.lives <= 0) {
+      this.stop();
+      return;
+    }
   };
 
+  drawScore() {
+    this.ctx.save();
+    this.ctx.font = "20px Helvetica";
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "left";
+    this.ctx.textBaseline = "top";
 
+    const xOffset = 20;
+    const yScore = 30;
+    const yPassports = 60;
 
-  stop() {
-    clearInterval(this.intervalId);
-    targetRestart.classList.remove("hidden");
-  }
+    this.ctx.fillText(`Score: ${this.score}`, xOffset, yScore);
+    this.ctx.fillText(
+      `Passports: ${this.passportsCollected}`,
+      xOffset,
+      yPassports
+    );
 
-  clear() {
-    this.backgroundImage.src = "docs/assets/images/lisboa-skyline.png";
-    this.ctx.clearRect(0, 0, 1200, 450);
-    this.ctx.drawImage(this.backgroundImage, 0, 0, 1200, 450);
+    this.ctx.restore();
   }
 
   drawLives(frames) {
+    this.ctx.save();
     this.img = this.images[Math.floor((frames % 30) / 3.75)];
-    if (this.lives === 5) {
-      this.ctx.drawImage(this.img, 10, 30);
-      this.ctx.drawImage(this.img, 40, 30);
-      this.ctx.drawImage(this.img, 70, 30);
-      this.ctx.drawImage(this.img, 100, 30);
-      this.ctx.drawImage(this.img, 130, 30);
-    } else if (this.lives === 4) {
-      this.ctx.drawImage(this.img, 10, 30);
-      this.ctx.drawImage(this.img, 40, 30);
-      this.ctx.drawImage(this.img, 70, 30);
-      this.ctx.drawImage(this.img, 100, 30);
-    } else if (this.lives === 3) {
-      this.ctx.drawImage(this.img, 10, 30);
-      this.ctx.drawImage(this.img, 40, 30);
-      this.ctx.drawImage(this.img, 70, 30);
-    } else if (this.lives === 2) {
-      this.ctx.drawImage(this.img, 10, 30);
-      this.ctx.drawImage(this.img, 40, 30);
-    } else if (this.lives === 1) {
-      this.ctx.drawImage(this.img, 10, 30);
+    const xStart = 15;
+    const y = 90;
+    const spacing = 25;
+    for (let i = 0; i < this.lives; i++) {
+      this.ctx.drawImage(this.img, xStart + i * spacing, y);
+    }
+    this.ctx.restore();
+  }
+
+  drawBossHealth() {
+    if (this.boss) {
+      this.ctx.save();
+      const barWidth = 200;
+      const barHeight = 20;
+      const x = this.width - barWidth - 20;
+      const y = 20;
+      this.ctx.strokeStyle = "black";
+      this.ctx.strokeRect(x, y, barWidth, barHeight);
+      this.ctx.fillStyle = "red";
+      this.ctx.fillRect(x, y, this.boss.health * (barWidth / 10), barHeight);
+      this.ctx.restore();
     }
   }
 
-
+  screenScore() {
+    const gameOverScreen = document.getElementById("restart");
+    gameOverScreen.classList.remove("hidden");
+  }
 
   updateScore() {
     if (this.frames % 10 === 0) {
@@ -180,58 +278,184 @@ class Game {
     }
   }
 
+  increaseDifficulty() {
+    this.enemies.forEach((enemy) => {
+      enemy.speedX *= 1.2;
+    });
+    this.enemySpawnInterval = 100;
+  }
+
+  spawnBoss() {
+    this.enemies = [];
+    this.passports = [];
+    this.boss = new Boss(this.ctx);
+    this.displayBossMessage();
+  }
+
+  displayBossMessage() {
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.ctx.fillStyle = "#ffd300";
+    this.ctx.font = "50px Helvetica";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Boss Battle!", this.width / 2, this.height / 2);
+
+    setTimeout(() => {}, 2000);
+  }
+
   updateEnemies() {
     for (let i = 0; i < this.enemies.length; i++) {
-      this.enemies[i].x -= 5;
+      this.enemies[i].update();
       this.enemies[i].draw();
+      if (this.enemies[i].x + this.enemies[i].w < 0) {
+        this.enemies.splice(i, 1);
+        i--;
+      }
     }
-    
-    let randomX = 1200 +  Math.floor(Math.random() * (400 - 100) + 100)
 
-  if (this.frames % 70 === 0) {
+    if (!this.bossBattleStarted) {
+      if (this.frames % this.enemySpawnInterval === 0) {
+        const randomX = 1200 + Math.floor(Math.random() * 200);
+        const enemyHeight = 50;
+        const groundLevelY = this.height - enemyHeight;
+        const fixedY = groundLevelY;
+        const isMushroomAllowed =
+          !this.player.isPowerUpActive && this.player.animationSpeed === 5;
+        const randomChance = Math.random();
 
-    if (this.count === 0){
-      this.enemies.push(new Enemy(randomX, 400, img1, "weed", this.ctx))
-      this.count ++
-    }else if (this.count === 1){
-      this.enemies.push(new Enemy(randomX, 400, img2, "coke", this.ctx))
-      this.count ++
-    }else if (this.count === 2){
-      this.enemies.push(new Enemy(randomX, 400, img3, "mushroom", this.ctx))
-      this.count = 0
+        if (isMushroomAllowed && randomChance < 0.1) {
+          this.enemies.push(
+            new Enemy(randomX, fixedY, imgMushroom, "mushroom", this.ctx)
+          );
+        } else {
+          if (randomChance < 0.5) {
+            this.enemies.push(
+              new Enemy(randomX, fixedY, imgWeed, "weed", this.ctx)
+            );
+          } else {
+            this.enemies.push(
+              new Enemy(randomX, fixedY, imgCoke, "coke", this.ctx)
+            );
+          }
+        }
+      }
     }
-  } 
-}
+  }
+
+  updatePassports() {
+    for (let i = 0; i < this.passports.length; i++) {
+      this.passports[i].update();
+      this.passports[i].draw();
+
+      if (this.passports[i].x + this.passports[i].w < 0) {
+        this.passports.splice(i, 1);
+        i--;
+      }
+    }
+
+    if (!this.bossBattleStarted) {
+      if (this.frames % 200 === 0) {
+        const randomX = 1200;
+        const groundLevelY = this.height - this.player.h;
+        const maxJumpHeight = 100;
+
+        const maxPassportY = groundLevelY - maxJumpHeight;
+        const minPassportY = maxPassportY + 30;
+        const randomY =
+          Math.random() * (minPassportY - maxPassportY) + maxPassportY;
+
+        if (randomY < 0) randomY = 0;
+        if (randomY + 30 > this.height) randomY = this.height - 30;
+
+        this.passports.push(new Passport(randomX, randomY, this.ctx));
+      }
+    }
+  }
+
+  updateProjectiles() {
+    for (let i = 0; i < this.projectiles.length; i++) {
+      const projectile = this.projectiles[i];
+      projectile.update();
+      projectile.draw();
+      if (projectile.x > this.width) {
+        this.projectiles.splice(i, 1);
+        i--;
+      } else if (this.boss && this.checkCollision(projectile, this.boss)) {
+        this.boss.health--;
+        this.projectiles.splice(i, 1);
+        i--;
+      }
+    }
+  }
 
   checkGame() {
-    for (let i = 0; i < this.enemies.length; i++) {
-      if (this.player.crashWith(this.enemies[i])) {
-        this.enemies.splice(i, 1);
-        this.lives--;
-        if (this.enemies[i].type == "coke") {
-          //weed
-          this.player.animationSpeed = 15;
-        } else if (this.enemies[i].type === "mushroom") {
-          //coke
-          this.player.animationSpeed = 2;
-        } else if (this.enemies[i].type === "weed") {
-          //mushroom
-          document.getElementById("canvas").classList.add("shroom");
-          document.getElementById("body").classList.add("shroom");
+    if (!this.bossBattleStarted) {
+      for (let i = 0; i < this.enemies.length; i++) {
+        if (this.player.crashWith(this.enemies[i])) {
+          const enemy = this.enemies[i];
+          this.enemies.splice(i, 1);
 
-          setTimeout(() => {
-            document.getElementById("canvas").classList.remove("shroom");
-            document.getElementById("body").classList.remove("shroom");
-          }, 10000);
+          if (enemy.type === "mushroom") {
+            this.player.activatePowerUp();
+          } else if (!this.player.isPowerUpActive) {
+            if (enemy.type === "coke") {
+              this.player.animationSpeed = 2;
+              document.getElementById("canvas").classList.add("coke-effect");
+              setTimeout(() => {
+                this.player.animationSpeed = 5;
+                document
+                  .getElementById("canvas")
+                  .classList.remove("coke-effect");
+              }, 5000);
+            } else if (enemy.type === "weed") {
+              this.player.animationSpeed = 10;
+              document.getElementById("canvas").classList.add("weed-effect");
+              setTimeout(() => {
+                this.player.animationSpeed = 5;
+                document
+                  .getElementById("canvas")
+                  .classList.remove("weed-effect");
+              }, 5000);
+            }
+
+            this.lives--;
+          }
         }
       }
     }
 
-    if (this.lives === 0) {
-      this.stop();
-      targetRestart.style.display = "block";
-      this.player.update();
-      this.screenScore()
+    for (let i = 0; i < this.passports.length; i++) {
+      if (this.player.crashWith(this.passports[i])) {
+        this.passports.splice(i, 1);
+        this.passportsCollected += 1;
+        this.score += 10;
+        i--;
+      }
     }
+
+    if (this.lives <= 0) {
+      this.stop();
+    }
+  }
+
+  checkCollision(obj1, obj2) {
+    return !(
+      obj1.bottom() < obj2.top() ||
+      obj1.top() > obj2.bottom() ||
+      obj1.right() < obj2.left() ||
+      obj1.left() > obj2.right()
+    );
+  }
+
+  winGame() {
+    clearInterval(this.intervalId);
+    const gameOverScreen = document.getElementById("restart");
+    if (!gameOverScreen.classList.contains("hidden")) {
+      gameOverScreen.classList.add("hidden");
+    }
+    const victoryScreen = document.getElementById("victory");
+    victoryScreen.classList.remove("hidden");
+    const finalScoreElement = document.getElementById("final-score");
+    finalScoreElement.textContent = this.score;
   }
 }
